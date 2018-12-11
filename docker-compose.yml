@@ -1,0 +1,12 @@
+version: '2.1'
+services:
+  db:
+    image: "postgres:10.5-alpine"
+    ports:
+      - "5432"
+    environment:
+      - "POSTGRES_USER=admin"
+      - "POSTGRES_PASSWORD=dmadventurebook"
+      - "PGDATA=${PGDATA:-/var/lib/postgresql/data}"
+    tmpfs:
+      - "/pgdata-tmpfs:uid=70" # used on CI by setting PGDATA ENV var
