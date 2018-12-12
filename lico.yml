@@ -1,0 +1,10 @@
+version: '1.0'
+
+dependencies:
+  - postgresql
+  - geckodriver
+  - qt5.5
+
+docker_ports:
+  db: 5432
+  redis: 6379

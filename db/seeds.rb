@@ -1,10 +1,26 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-Alchemy::Seeder.seed!
+
+# Configuration
+ITEM_COMPENDIUM = ''
+ITEM_COMPENDIUM = 'data/Items Compendium 1.7.0.xml'
+
+# Helpers
+def load_compendium(path_to_compendium)
+  @doc = File.open(path_to_compendium) { |f| Nokogiri::XML(f) }
+end
+
+##########
+# Items
+##########
+
+load_compendium ITEM_COMPENDIUM
+@doc.xpath('//item').each do |item_xml|
+  puts '*' * 10
+  item = Item.new
+  item.from_xml item_xml.to_xml
+  item.save unless item.item_type == '$'
+
+  puts "Item added: #{item.name}"
+end
