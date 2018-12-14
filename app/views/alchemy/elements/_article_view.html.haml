@@ -1,5 +1,8 @@
 - cache(element) do
-  = element_view_for(element, tag: 'article') do |el|
-    %h2= el.render :headline
-    = el.render :picture, size: '1200x600'
-    = el.render :text
+  = element_view_for(element) do |el|
+    .headline
+      = el.render :headline
+    .picture
+      = el.render :picture
+    .text
+      = el.render :text

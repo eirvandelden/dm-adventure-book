@@ -17,3 +17,18 @@
     type: EssenceRichtext
     default: :article_text
     hint: true
+- name: headline
+  contents:
+    - name: headline_name
+      type: EssenceText
+- name: text
+  contents:
+    - name: text_content
+      type: EssenceRichtext
+- name: pictures
+  nestable_elements:
+  - picture
+- name: picture
+  contents:
+    - name: picture_content
+      type: EssencePicture

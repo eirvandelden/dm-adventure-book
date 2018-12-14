@@ -4,5 +4,9 @@
 
 - name: index
   unique: true
-  elements: [article]
-  autogenerate: [article]
+  elements: [article, encounter]
+  autogenerate: [encounter]
+- name: encounter
+  elements: [headline, pictures, text]
+  autogenerate: [headline, text]
+  tags: true
