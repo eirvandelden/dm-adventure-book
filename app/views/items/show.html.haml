@@ -1,0 +1,40 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @item.name
+%p
+  %strong ItemType:
+  = @item.item_type
+%p
+  %strong Weight:
+  = @item.weight
+%p
+  %strong Text:
+  = @item.text
+%p
+  %strong Ac:
+  = @item.ac
+%p
+  %strong Strength:
+  = @item.strength
+%p
+  %strong Stealth:
+  = @item.stealth
+%p
+  %strong Dmg1:
+  = @item.dmg1
+%p
+  %strong Dmg2:
+  = @item.dmg2
+%p
+  %strong Dmgtype:
+  = @item.dmgType
+%p
+  %strong Property:
+  = @item.property
+%p
+  %strong Range:
+  = @item.range
+= link_to 'Edit', edit_item_path(@item)
+|
+= link_to 'Back', items_path

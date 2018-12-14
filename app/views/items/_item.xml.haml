@@ -1,0 +1,24 @@
+%item
+  %name= item.name
+  %type= item.item_type
+  %detail
+  %magic= item.magic
+  %value= item.value
+  %rarity= item.rarity
+  %weight= item.weight
+  %ac
+    = item.ac
+  %strength= item.strength
+  %stealth= item.stealth
+  %dmg1
+    - item.dmg1
+  %dmg2
+    - item.dmg2
+  %dmgtype
+    - item.dmgType
+  %property
+    - item.property
+  %range
+    - item.range
+  - item.text.each_line do |line|
+    %text= line

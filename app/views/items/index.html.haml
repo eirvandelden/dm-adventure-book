@@ -1,0 +1,39 @@
+%p#notice= notice
+%h1 Items
+%table
+  %thead
+    %tr
+      %th Name
+      %th ItemType
+      %th Weight
+      %th Text
+      %th Ac
+      %th Strength
+      %th Stealth
+      %th Dmg1
+      %th Dmg2
+      %th Dmgtype
+      %th Property
+      %th Range
+      %th{:colspan => "3"}
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.name
+        %td= item.item_type
+        %td= item.weight
+        %td= item.text
+        %td= item.ac
+        %td= item.strength
+        %td= item.stealth
+        %td= item.dmg1
+        %td= item.dmg2
+        %td= item.dmgType
+        %td= item.property
+        %td= item.range
+        %td= link_to 'Show', item
+        %td= link_to 'Edit', edit_item_path(item)
+        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Item', new_item_path
+%br/

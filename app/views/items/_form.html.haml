@@ -1,0 +1,47 @@
+= form_for(item) do |f|
+  - if item.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(item.errors.count, "error")
+        prohibited this item from being saved:
+      %ul
+        - item.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :item_type
+    = f.text_field :item_type
+  .field
+    = f.label :weight
+    = f.number_field :weight
+  .field
+    = f.label :text
+    = f.text_area :text
+  .field
+    = f.label :ac
+    = f.number_field :ac
+  .field
+    = f.label :strength
+    = f.number_field :strength
+  .field
+    = f.label :stealth
+    = f.check_box :stealth
+  .field
+    = f.label :dmg1
+    = f.text_field :dmg1
+  .field
+    = f.label :dmg2
+    = f.text_field :dmg2
+  .field
+    = f.label :dmgType
+    = f.text_field :dmgType
+  .field
+    = f.label :property
+    = f.text_field :property
+  .field
+    = f.label :range
+    = f.text_field :range
+  .actions
+    = f.submit
