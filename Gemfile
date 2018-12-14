@@ -11,6 +11,7 @@ gem 'alchemy-devise'
 gem 'bootsnap', require: false
 gem 'coffee-rails'
 gem 'dotenv-rails'
+gem 'haml-rails'
 gem 'pg'
 gem 'puma'
 gem 'rails'
