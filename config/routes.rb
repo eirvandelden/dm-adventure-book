@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace :admin do
-    resources :items
-
-    root to: 'items#index'
-  end
-
+  resources :items
   resources :items do
     member do
       patch 'upload', to: 'items#upload'

@@ -349,6 +349,26 @@ ActiveRecord::Schema.define(version: 2018_10_16_093424) do
     t.index ["taggings_count"], name: "index_gutentag_tags_on_taggings_count"
   end
 
+  create_table "items", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "item_type"
+    t.integer "weight"
+    t.text "text"
+    t.integer "ac"
+    t.integer "strength"
+    t.boolean "stealth"
+    t.string "dmg1"
+    t.string "dmg2"
+    t.string "dmgType"
+    t.string "property"
+    t.string "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "magic"
+    t.string "value"
+    t.string "rarity"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
