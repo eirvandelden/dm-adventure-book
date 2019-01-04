@@ -6,6 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.3'
 
 gem 'acts-as-taggable-on'
+gem 'activemodel-serializers-xml'
+# gem 'active_model_serializers', '~> 0.10.0'
 gem 'alchemy_cms'
 gem 'alchemy-devise'
 gem 'bootsnap', require: false
