@@ -14,6 +14,7 @@
 !/tmp/.keep
 
 # Ignore uploaded files in development
+/uploads
 /storage/*
 !/storage/.keep
 
@@ -30,3 +31,9 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+/public/assets
+/public/pictures
+/config/database.yml
+.DS_Store
+/db/*.sqlite3
