@@ -1,2 +1,7 @@
-Metrics/LineLength:
-  Max: 99
+# Omakase Ruby styling for Rails
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
+inherit_from:
+  - .rubocop_todo.yml
+  - ~/.rubocop.yml
