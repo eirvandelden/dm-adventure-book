@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
-source 'https://rubygems.org'
+source "https://gem.coop"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby file: ".ruby-version"
 
 gem 'acts-as-taggable-on'
 gem 'activemodel-serializers-xml'
@@ -23,7 +21,7 @@ gem 'uglifier'
 gem 'webpacker'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem "debug", "> 1"
 end
 
 group :development do
