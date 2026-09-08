@@ -3,14 +3,13 @@ class Item < ApplicationRecord
 
   def attributes=(hash)
     hash.each do |key, value|
-      # byebug
       case key
       when "type"
         send("item_type=", value)
       when "roll"
         puts "skipping adding roll for now"
       when "modifier"
-        puts "skipping modifiels for now"
+        puts "skipping modifiers for now"
       when "text"
         value.is_a?(Array) ? send("#{key}=", value.join("\n")) : send("#{key}=", value)
 
@@ -21,7 +20,6 @@ class Item < ApplicationRecord
   end
 
   def attributes
-    # byebug
     { "name" => nil }
   end
 end

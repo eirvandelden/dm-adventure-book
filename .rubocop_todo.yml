@@ -2,9 +2,8 @@
 # `rubocop --auto-gen-config`, then hand-edited to exclude specific files
 # instead of loosening the rule everywhere:
 #
-# - config/initializers/alchemy.rb and devise.rb are gem-generated template
-#   comments (from `rails g alchemy:install` / Devise's own installer), not
-#   our prose.
+# - config/initializers/devise.rb is Devise's own installer template
+#   (example secret_key/pepper values), not our prose.
 # - db/migrate/*.alchemy.rb are copied verbatim from the alchemy_cms gem via
 #   `rails alchemy:install:migrations`.
 # - db/seeds/alchemy/legacy_content.rb holds real 2019 campaign writing
@@ -17,6 +16,5 @@ Metrics/BlockLength:
 
 Layout/LineLength:
   Exclude:
-    - 'config/initializers/alchemy.rb'
     - 'config/initializers/devise.rb'
     - 'db/seeds/alchemy/legacy_content.rb'

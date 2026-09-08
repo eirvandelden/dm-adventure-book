@@ -16,4 +16,16 @@ class ItemsTest < ActionDispatch::IntegrationTest
       delete item_path(@item)
     end
   end
+
+  test "creating an item through the form keeps its item type" do
+    post items_path, params: { item: { name: "Dagger", item_type: "Weapon" } }
+
+    assert_equal "Weapon", Item.last.item_type
+  end
+
+  test "updating an item through the form keeps its item type" do
+    patch item_path(@item), params: { item: { item_type: "Weapon" } }
+
+    assert_equal "Weapon", @item.reload.item_type
+  end
 end

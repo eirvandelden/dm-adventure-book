@@ -26,6 +26,6 @@ class PagesTest < ActionDispatch::IntegrationTest
   test "the admin area is reachable" do
     get "/admin"
 
-    assert_response :redirect
+    assert_redirected_to alchemy.admin_dashboard_path
   end
 end

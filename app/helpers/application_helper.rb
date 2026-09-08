@@ -22,8 +22,10 @@ module ApplicationHelper
     return nil if page.blank?
 
     # Alchemy renamed the :see ability action to :read at some point after
-    # 4.6.7, and now folds the page's published state into it too.
-    pages = page.children.where(visible: true).accessible_by(current_ability, :read).to_a
+    # 4.6.7, and now folds visibility (published, not restricted) into it -
+    # `visible` is a leftover column from the app's original 2018 schema
+    # that Alchemy 8.3 no longer reads or exposes anywhere in the admin UI.
+    pages = page.children.accessible_by(current_ability, :read).to_a
     pages.reverse! if options[:reverse]
 
     render options[:navigation_partial], options: options, pages: pages, html_options: html_options

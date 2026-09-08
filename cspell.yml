@@ -1,0 +1,48 @@
+# cspell.yml (repo root)
+#
+# Purpose:
+# - Repo-root config so `cspell` auto-discovery works when run from this repo.
+# - Keeps your global/user dictionary (names, recurring terms) separate from
+#   this repo's project-specific vocabulary.
+#
+# Conventions:
+# - User dictionary (stowed): ~/.config/cspell/user-dictionary.txt
+# - Repo-local dictionary (committed here): ./project-dictionary.txt
+
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: "0.2"
+
+dictionaryDefinitions:
+  # Your personal/global dictionary (shared across repos)
+  - name: user-dictionary
+    path: ~/.config/cspell/user-dictionary.txt
+    addWords: true
+
+  # This repo's own vocabulary: AlchemyCMS/Devise/Rails internals, and the
+  # real 2019 campaign writing restored in db/seeds/alchemy/legacy_content.rb.
+  - name: dm-adventure-book-project-dictionary
+    path: ./project-dictionary.txt
+    addWords: true
+
+dictionaries:
+  - bash
+  - css
+  - en_us
+  - html
+  - node
+  - ruby
+  - softwareTerms
+  - user-dictionary
+  - dm-adventure-book-project-dictionary
+
+ignorePaths:
+  - config/credentials.yml.enc
+  - db/*.sqlite3
+  - Gemfile.lock
+  - log/**
+  - storage/**
+  - tmp/**
+  - vendor/**
+  # Do not spellcheck dictionary files.
+  - project-dictionary.txt
+  - user-dictionary.txt

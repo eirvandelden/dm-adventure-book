@@ -28,30 +28,40 @@ class NavigationTest < ActionDispatch::IntegrationTest
     Alchemy::Page::Publisher.new(@root_page).publish!(public_on: Time.current)
   end
 
-  test "the public navigation lists visible, unrestricted pages" do
+  test "the public navigation lists published, unrestricted pages" do
     get "/home"
 
-    assert_includes @response.body, @visible_child.name
+    assert_select "ul.navigation a", text: @visible_child.name
   end
 
   test "the public navigation excludes restricted pages" do
     get "/home"
 
-    assert_not_includes @response.body, @restricted_child.name
+    assert_select "ul.navigation a", text: @restricted_child.name, count: 0
+  end
+
+  test "a page created the way the admin UI creates one (visible left at its column default) still appears" do
+    page = create_child_page(@root_page, name: "New Page", restricted: false)
+
+    get "/home"
+
+    assert_select "ul.navigation a", text: page.name
   end
 
   private
 
-  def create_child_page(parent, name:, visible:, restricted:)
-    page = Alchemy::Page.create!(
+  def create_child_page(parent, name:, restricted:, visible: nil)
+    attributes = {
       name: name,
       page_layout: "scene",
       language: parent.language,
       parent: parent,
-      visible: visible,
       restricted: restricted,
       autogenerate_elements: false
-    )
+    }
+    attributes[:visible] = visible unless visible.nil?
+
+    page = Alchemy::Page.create!(**attributes)
     Alchemy::Page::Publisher.new(page).publish!(public_on: Time.current)
     page
   end

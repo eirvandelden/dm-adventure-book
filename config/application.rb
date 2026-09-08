@@ -31,7 +31,11 @@ module DmAdventureBook
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    # Use ImageMagick (already required by Dragonfly) instead of libvips.
+    # Nothing in this app actually attaches files via Active Storage - Alchemy
+    # uses Dragonfly for pictures/attachments - but Active Storage still loads
+    # as part of the framework and its default variant processor is :vips,
+    # which requires the ruby-vips gem and libvips. Using :mini_magick instead
+    # avoids that dependency, since ImageMagick is already required by Dragonfly.
     config.active_storage.variant_processor = :mini_magick
   end
 end
