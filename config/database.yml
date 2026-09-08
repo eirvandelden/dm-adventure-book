@@ -1,21 +1,16 @@
-# Psych 5 refuses YAML aliases when Rails reads this file with safe_load, so the
-# shared settings are spelled out per environment instead of anchored.
-development:
-  adapter: postgresql
-  encoding: unicode
+default: &default
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['DOCKER_DB_HOST'] %>
-  port: <%= ENV['DOCKER_DB_PORT'] %>
-  database: dm-adventure-book_development
-  username: admin
-  password: dmadventurebook
+  timeout: 5000
+
+development:
+  <<: *default
+  database: storage/development.sqlite3
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['DOCKER_DB_HOST'] %>
-  port: <%= ENV['DOCKER_DB_PORT'] %>
-  database: dm-adventure-book_test
-  username: admin
-  password: dmadventurebook
+  <<: *default
+  database: storage/test.sqlite3
+
+production:
+  <<: *default
+  database: storage/production.sqlite3

@@ -1,19 +1,19 @@
 # == In this configuration, you set up Alchemy's element layouts.
 #
-# For further information please see http://guides.alchemy-cms.com/stable/elements.html
+# For further information please see https://alchemy-cms.com/docs/guides/elements
 
 - name: headline
-  contents:
-    - name: headline_name
-      type: EssenceText
+  ingredients:
+    - role: headline_name
+      type: Text
 - name: text
-  contents:
-    - name: text_content
-      type: EssenceRichtext
+  ingredients:
+    - role: text_content
+      type: Richtext
 - name: pictures
   nestable_elements:
-  - picture
+    - picture
 - name: picture
-  contents:
-    - name: picture_content
-      type: EssencePicture
+  ingredients:
+    - role: picture_content
+      type: Picture
