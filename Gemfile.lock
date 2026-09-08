@@ -179,6 +179,8 @@ GEM
     excon (1.7.1)
       logger
     ffi (1.17.4)
+    ffi (1.17.4-aarch64-linux-gnu)
+    ffi (1.17.4-x86_64-linux-gnu)
     flickwerk (0.3.6)
       railties (>= 7.0)
     fog-aws (3.3.0)
@@ -278,7 +280,11 @@ GEM
       net-protocol
     net-ssh (5.0.2)
     nio4r (2.7.5)
+    nokogiri (1.19.4-aarch64-linux-gnu)
+      racc (~> 1.4)
     nokogiri (1.19.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
     originator (3.1)
       actionpack (>= 4.0)
@@ -364,7 +370,9 @@ GEM
     simple_form (5.4.1)
       actionpack (>= 7.0)
       activemodel (>= 7.0)
+    sqlite3 (2.9.6-aarch64-linux-gnu)
     sqlite3 (2.9.6-arm64-darwin)
+    sqlite3 (2.9.6-x86_64-linux-gnu)
     sshkit (1.17.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
@@ -398,7 +406,9 @@ GEM
     zeitwerk (2.8.3)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   activemodel-serializers-xml
