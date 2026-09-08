@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This migration comes from alchemy (originally 20230121212637)
 class AlchemySixPointOne < ActiveRecord::Migration[ActiveRecord::Migration.current_version]
   def up
@@ -148,7 +146,8 @@ class AlchemySixPointOne < ActiveRecord::Migration[ActiveRecord::Migration.curre
         t.references "page_version", null: false, foreign_key: { to_table: :alchemy_page_versions, on_delete: :cascade }
         t.index [ "creator_id" ], name: "index_alchemy_elements_on_creator_id"
         t.index [ "fixed" ], name: "index_alchemy_elements_on_fixed"
-        t.index [ "page_version_id", "parent_element_id" ], name: "idx_alchemy_elements_on_page_version_id_and_parent_element_id"
+        t.index [ "page_version_id", "parent_element_id" ],
+name: "idx_alchemy_elements_on_page_version_id_and_parent_element_id"
         t.index [ "page_version_id", "position" ], name: "idx_alchemy_elements_on_page_version_id_and_position"
         t.index [ "updater_id" ], name: "index_alchemy_elements_on_updater_id"
       end

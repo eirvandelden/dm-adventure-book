@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Importer
   def self.import!
     Spell.transaction do
@@ -23,17 +21,17 @@ class Importer
       # Process attributes
       xml_data.each do |el|
         case el.name
-        when 'name' then @name = el.content
-        when 'level' then @level = el.content.to_i
-        when 'school' then @school = el.content
-        when 'time' then @time = el.content
-        when 'components' then @components = el.content
-        when 'duration' then @duration = el.content
-        when 'classes' then @classes = el.content.split(',').map(&:strip)
-        when 'range' then @range = el.content
-        when 'roll' then @roll = el.content
-        when 'ritual' then @ritual = el.content
-        when 'text' then @description << el.content
+        when "name" then @name = el.content
+        when "level" then @level = el.content.to_i
+        when "school" then @school = el.content
+        when "time" then @time = el.content
+        when "components" then @components = el.content
+        when "duration" then @duration = el.content
+        when "classes" then @classes = el.content.split(",").map(&:strip)
+        when "range" then @range = el.content
+        when "roll" then @roll = el.content
+        when "ritual" then @ritual = el.content
+        when "text" then @description << el.content
         else
           puts "Unrecognized field: #{el.name}"
         end
@@ -75,7 +73,7 @@ class Importer
 
   attr_reader :spells, :filename, :classes
 
-  def initialize(filename = 'data/spell-compendium.xml')
+  def initialize(filename = "data/spell-compendium.xml")
     @spells = []
     @classes = []
     @filename = filename
@@ -87,7 +85,7 @@ class Importer
   def load_spells
     load_compendium
 
-    @doc.xpath('//spell').each do |xml|
+    @doc.xpath("//spell").each do |xml|
       @spells << SpellData.new(xml.element_children)
     end
 
