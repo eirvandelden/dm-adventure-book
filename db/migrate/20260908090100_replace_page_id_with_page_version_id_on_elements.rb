@@ -1,9 +1,15 @@
-class MigrateElementsToPageVersions < ActiveRecord::Migration[8.1]
+class ReplacePageIdWithPageVersionIdOnElements < ActiveRecord::Migration[8.1]
   # The 2018-era "alchemy_four_point_zero" bootstrap migration created
   # alchemy_elements with a direct page_id (and a cell_id, from the
   # long-gone Cell/Content/Essence content model). Modern AlchemyCMS
   # elements belong to a page_version instead, and cells/contents/essences
   # were replaced by ingredients years ago.
+  #
+  # This does NOT backfill page_version_id for existing elements, and drops
+  # the Cell/Content/Essence tables outright rather than converting their
+  # rows to ingredients. It is only safe to run against an empty database.
+  # Real content is restored afterwards from db/seeds/alchemy/legacy_content.rb,
+  # not migrated in place.
   def up
     add_reference :alchemy_elements, :page_version,
       foreign_key: { to_table: :alchemy_page_versions, on_delete: :cascade }

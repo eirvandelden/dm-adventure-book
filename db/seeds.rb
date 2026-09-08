@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-Alchemy::Seeder.seed!
-
 require_relative 'seeds/alchemy/legacy_content'
 Seeds::LegacyAlchemyContent.seed!
 

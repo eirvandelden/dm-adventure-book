@@ -1,8 +1,9 @@
-# frozen_string_literal: true
-
 # The original campaign content from before this app's database engine
-# switched from PostgreSQL to SQLite (see db/dm-adventure-book_dump).
-# Restored via db/seeds.rb, guarded so it only runs once.
+# switched from PostgreSQL to SQLite, extracted from a local Postgres
+# backup that is not committed to this repository (it also held the admin
+# login, which is intentionally left out of this file). This is the only
+# surviving copy of the content. Restored via db/seeds.rb, guarded so it
+# only runs once.
 module Seeds
   module LegacyAlchemyContent
     PAGES = [ { old_id: "5",
@@ -200,22 +201,33 @@ module Seeds
         parent: parent_page,
         autogenerate_elements: false
       )
-      version = page.draft_version
-      version.title = data[:title]
-      version.public_on = data[:public_on] && Time.zone.parse(data[:public_on])
-      version.public_until = data[:public_until] && Time.zone.parse(data[:public_until])
+      page.draft_version.title = data[:title]
       page.save!
-
       page_by_old_id[data[:old_id]] = page
 
-      data[:elements].each do |element_data|
+      build_elements(page.draft_version, data[:elements])
+      publish_page(page, data) if data[:public_on]
+
+      data[:children].each { |child| create_page(child, page, language, page_by_old_id) }
+    end
+
+    def self.build_elements(version, elements_data)
+      elements_data.each do |element_data|
         element = Alchemy::Element.create!(page_version: version, name: element_data[:name])
         element_data[:ingredients].each do |ingredient_data|
           element.ingredient_by_role(ingredient_data[:role]).update!(value: ingredient_data[:value])
         end
       end
+    end
 
-      data[:children].each { |child| create_page(child, page, language, page_by_old_id) }
+    # Publishing (rather than setting public_on on the draft directly) gives
+    # the page a real, separate public_version the way Alchemy's own editor
+    # does - so a draft remains for the admin UI to edit.
+    def self.publish_page(page, data)
+      Alchemy::Page::Publisher.new(page).publish!(public_on: Time.zone.parse(data[:public_on]))
+      return unless data[:public_until]
+
+      page.public_version.update!(public_until: Time.zone.parse(data[:public_until]))
     end
   end
 end
