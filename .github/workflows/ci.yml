@@ -1,27 +1,27 @@
 name: CI
-
 on:
+  pull_request:
   push:
     branches: [master]
-  pull_request:
-
 jobs:
-  test:
+  ci:
+    uses: eirvandelden/appkit/.github/workflows/rails-ci.yml@main
+    with:
+      run_system_tests: false
+
+  # Catches gems that install fine but only break when a production boot
+  # actually loads their code (see config/environments/production.rb).
+  boot_production:
+    name: Boot production environment
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v6.0.3
+      - uses: spinel-coop/setup-rv@main
         with:
-          bundler-cache: true
-
-      - name: Set up database
+          ruby-version: current
+          install-gems: true
+      - name: Boot in production mode
         env:
-          RAILS_ENV: test
-        run: bin/rails db:test:prepare
-
-      - name: Run tests
-        env:
-          RAILS_ENV: test
-        run: bin/rails test
+          RAILS_ENV: production
+          SECRET_KEY_BASE: ci-boot-check
+        run: bin/rails runner 'puts "Booted #{Rails.env}"'

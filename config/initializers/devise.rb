@@ -14,7 +14,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = Alchemy.config.get(:mailer)['mail_from']
+  config.mailer_sender = Alchemy.config.get(:mailer)["mail_from"]
 
   # Configure the class responsible to send e-mails.
   config.mailer = "Alchemy::Notifications"
@@ -23,7 +23,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   config.parent_controller = "Alchemy::BaseController"
 
@@ -71,7 +71,7 @@ Devise.setup do |config|
   config.http_authenticatable_on_xhr = true
 
   # The realm used in Http Basic Authentication. 'Application' by default.
-  config.http_authentication_realm = 'Alchemy CMS'
+  config.http_authentication_realm = "Alchemy CMS"
 
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
