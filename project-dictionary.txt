@@ -1,0 +1,68 @@
+# Words cspell doesn't know that are real in this repo, not typos.
+# See cspell.yml for how this file is loaded.
+
+# AlchemyCMS, Devise, and other gem internals (option names, module names,
+# comments copied verbatim from their own generators/READMEs)
+actioncable
+airbrussh
+Airbrussh
+authlogic
+encryptable
+encryptors
+fkey
+gutentag
+Gutentag
+hotwired
+htmls
+importmap
+ISAM
+ivar
+libvips
+magick
+menues
+omniauth
+Omniauth
+pids
+publickey
+reconfirmable
+rescuable
+richtexts
+taggings
+Taggings
+timeoutable
+urlname
+validatable
+
+# This app's own domain vocabulary
+layoutpage
+stylesheet
+
+# A contributor's name in a vendored comment
+rlisowski
+
+# Real 2019 campaign writing recovered from a Postgres backup
+# (db/seeds/alchemy/legacy_content.rb) - proper nouns, British spellings,
+# and the author's own typos. Not ours to rewrite.
+colour
+Colour
+colours
+croonies
+customise
+Deekin's
+Deekins
+desmene
+dissappear
+earthmote
+Fairuza
+Hacklor
+homebase
+Longsword
+Moras
+mythal
+succesfully
+Thran
+Zaldar
+
+# Test/model data
+firstname
+lastname

@@ -14,13 +14,12 @@
 Dragonfly.app(:alchemy_pictures).configure do
   dragonfly_url nil
   plugin :imagemagick
-  plugin :svg
-  secret '9b6a4e69fb167da688615eed848835a6a73743ebb5bc88967c74b27b4a46f88b'
-  url_format '/pictures/:job/:name.:ext'
+  secret "9b6a4e69fb167da688615eed848835a6a73743ebb5bc88967c74b27b4a46f88b"
+  url_format "/pictures/:job/:name.:ext"
 
   datastore :file,
-    root_path: Rails.root.join('uploads/pictures').to_s,
-    server_root: Rails.root.join('public'),
+    root_path: Rails.root.join("uploads/pictures").to_s,
+    server_root: Rails.root.join("public"),
     store_meta: false
 end
 
@@ -30,6 +29,6 @@ Rails.application.middleware.use Dragonfly::Middleware, :alchemy_pictures
 # Attachments
 Dragonfly.app(:alchemy_attachments).configure do
   datastore :file,
-    root_path:  Rails.root.join('uploads/attachments').to_s,
+    root_path:  Rails.root.join("uploads/attachments").to_s,
     store_meta: false
 end

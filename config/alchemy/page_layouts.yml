@@ -9,4 +9,3 @@
 - name: scene
   elements: [headline, pictures, text]
   autogenerate: [headline, text]
-  tags: true

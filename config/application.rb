@@ -1,19 +1,16 @@
-# frozen_string_literal: true
+require_relative "boot"
 
-require_relative 'boot'
-
-require 'rails'
+require "rails"
 # Pick the frameworks you want:
-require 'active_model/railtie'
-require 'active_job/railtie'
-require 'active_record/railtie'
-require 'active_storage/engine'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'action_view/railtie'
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
 require "action_cable/engine"
-require 'sprockets/railtie'
-# require "rails/test_unit/railtie"
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,7 +19,9 @@ Bundler.require(*Rails.groups)
 module DmAdventureBook
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 8.1
+
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -32,6 +31,11 @@ module DmAdventureBook
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.sass.preferred_syntax = :sass
+    # Nothing in this app actually attaches files via Active Storage - Alchemy
+    # uses Dragonfly for pictures/attachments - but Active Storage still loads
+    # as part of the framework and its default variant processor is :vips,
+    # which requires the ruby-vips gem and libvips. Using :mini_magick instead
+    # avoids that dependency, since ImageMagick is already required by Dragonfly.
+    config.active_storage.variant_processor = :mini_magick
   end
 end

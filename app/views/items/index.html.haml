@@ -33,7 +33,7 @@
         %td= item.range
         %td= link_to 'Show', item
         %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Destroy', item, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
 %br/
 = link_to 'New Item', new_item_path
 %br/

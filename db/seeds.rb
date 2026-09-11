@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
-Alchemy::Seeder.seed!
+require_relative 'seeds/alchemy/legacy_content'
+Seeds::LegacyAlchemyContent.seed!
 
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 

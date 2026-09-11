@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 # This migration comes from alchemy (originally 20180226123013)
 
 class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
@@ -15,7 +15,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.datetime "updated_at", null: false, precision: 6
         t.text "cached_tag_list"
         t.string "file_uid"
-        t.index ["file_uid"], name: "index_alchemy_attachments_on_file_uid"
+        t.index [ "file_uid" ], name: "index_alchemy_attachments_on_file_uid"
       end
     end
 
@@ -25,7 +25,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.string "name"
         t.datetime "created_at", null: false, precision: 6
         t.datetime "updated_at", null: false, precision: 6
-        t.index ["page_id"], name: "index_alchemy_cells_on_page_id"
+        t.index [ "page_id" ], name: "index_alchemy_cells_on_page_id"
       end
     end
 
@@ -40,8 +40,9 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.datetime "updated_at", null: false, precision: 6
         t.integer "creator_id"
         t.integer "updater_id"
-        t.index ["element_id", "position"], name: "index_contents_on_element_id_and_position"
-        t.index ["essence_id", "essence_type"], name: "index_alchemy_contents_on_essence_id_and_essence_type", unique: true
+        t.index [ "element_id", "position" ], name: "index_contents_on_element_id_and_position"
+        t.index [ "essence_id", "essence_type" ], name: "index_alchemy_contents_on_essence_id_and_essence_type",
+unique: true
       end
     end
 
@@ -60,9 +61,9 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.integer "cell_id"
         t.text "cached_tag_list"
         t.integer "parent_element_id"
-        t.index ["cell_id"], name: "index_alchemy_elements_on_cell_id"
-        t.index ["page_id", "parent_element_id"], name: "index_alchemy_elements_on_page_id_and_parent_element_id"
-        t.index ["page_id", "position"], name: "index_elements_on_page_id_and_position"
+        t.index [ "cell_id" ], name: "index_alchemy_elements_on_cell_id"
+        t.index [ "page_id", "parent_element_id" ], name: "index_alchemy_elements_on_page_id_and_parent_element_id"
+        t.index [ "page_id", "position" ], name: "index_elements_on_page_id_and_position"
       end
     end
 
@@ -80,7 +81,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.datetime "updated_at", null: false, precision: 6
         t.integer "creator_id"
         t.integer "updater_id"
-        t.index ["value"], name: "index_alchemy_essence_booleans_on_value"
+        t.index [ "value" ], name: "index_alchemy_essence_booleans_on_value"
       end
     end
 
@@ -104,7 +105,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.datetime "created_at", null: false, precision: 6
         t.datetime "updated_at", null: false, precision: 6
         t.string "link_text"
-        t.index ["attachment_id"], name: "index_alchemy_essence_files_on_attachment_id"
+        t.index [ "attachment_id" ], name: "index_alchemy_essence_files_on_attachment_id"
       end
     end
 
@@ -149,7 +150,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.string "crop_from"
         t.string "crop_size"
         t.string "render_size"
-        t.index ["picture_id"], name: "index_alchemy_essence_pictures_on_picture_id"
+        t.index [ "picture_id" ], name: "index_alchemy_essence_pictures_on_picture_id"
       end
     end
 
@@ -172,7 +173,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.datetime "updated_at", null: false, precision: 6
         t.integer "creator_id"
         t.integer "updater_id"
-        t.index ["value"], name: "index_alchemy_essence_selects_on_value"
+        t.index [ "value" ], name: "index_alchemy_essence_selects_on_value"
       end
     end
 
@@ -196,7 +197,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.integer "page_id", null: false
         t.integer "user_id", null: false
         t.boolean "folded", default: false
-        t.index ["page_id", "user_id"], name: "index_alchemy_folded_pages_on_page_id_and_user_id", unique: true
+        t.index [ "page_id", "user_id" ], name: "index_alchemy_folded_pages_on_page_id_and_user_id", unique: true
       end
     end
 
@@ -215,9 +216,9 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.string "country_code", default: "", null: false
         t.integer "site_id", null: false
         t.string "locale"
-        t.index ["language_code", "country_code"], name: "index_alchemy_languages_on_language_code_and_country_code"
-        t.index ["language_code"], name: "index_alchemy_languages_on_language_code"
-        t.index ["site_id"], name: "index_alchemy_languages_on_site_id"
+        t.index [ "language_code", "country_code" ], name: "index_alchemy_languages_on_language_code_and_country_code"
+        t.index [ "language_code" ], name: "index_alchemy_languages_on_language_code"
+        t.index [ "site_id" ], name: "index_alchemy_languages_on_site_id"
       end
     end
 
@@ -227,8 +228,8 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.integer "page_id", null: false
         t.datetime "created_at", null: false, precision: 6
         t.datetime "updated_at", null: false, precision: 6
-        t.index ["page_id"], name: "index_alchemy_legacy_page_urls_on_page_id"
-        t.index ["urlname"], name: "index_alchemy_legacy_page_urls_on_urlname"
+        t.index [ "page_id" ], name: "index_alchemy_legacy_page_urls_on_page_id"
+        t.index [ "urlname" ], name: "index_alchemy_legacy_page_urls_on_urlname"
       end
     end
 
@@ -263,12 +264,12 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.datetime "public_on"
         t.datetime "public_until"
         t.datetime "locked_at"
-        t.index ["language_id"], name: "index_pages_on_language_id"
-        t.index ["locked_at", "locked_by"], name: "index_alchemy_pages_on_locked_at_and_locked_by"
-        t.index ["parent_id", "lft"], name: "index_pages_on_parent_id_and_lft"
-        t.index ["public_on", "public_until"], name: "index_alchemy_pages_on_public_on_and_public_until"
-        t.index ["rgt"], name: "index_alchemy_pages_on_rgt"
-        t.index ["urlname"], name: "index_pages_on_urlname"
+        t.index [ "language_id" ], name: "index_pages_on_language_id"
+        t.index [ "locked_at", "locked_by" ], name: "index_alchemy_pages_on_locked_at_and_locked_by"
+        t.index [ "parent_id", "lft" ], name: "index_pages_on_parent_id_and_lft"
+        t.index [ "public_on", "public_until" ], name: "index_alchemy_pages_on_public_on_and_public_until"
+        t.index [ "rgt" ], name: "index_alchemy_pages_on_rgt"
+        t.index [ "urlname" ], name: "index_pages_on_urlname"
       end
     end
 
@@ -299,8 +300,8 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.boolean "public", default: false
         t.text "aliases"
         t.boolean "redirect_to_primary_host"
-        t.index ["host", "public"], name: "alchemy_sites_public_hosts_idx"
-        t.index ["host"], name: "index_alchemy_sites_on_host"
+        t.index [ "host", "public" ], name: "alchemy_sites_public_hosts_idx"
+        t.index [ "host" ], name: "index_alchemy_sites_on_host"
       end
     end
 
@@ -313,15 +314,17 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
         t.integer "tagger_id"
         t.string "context", limit: 128
         t.datetime "created_at", precision: 6
-        t.index ["context"], name: "index_taggings_on_context"
-        t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-        t.index ["tag_id"], name: "index_taggings_on_tag_id"
-        t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
-        t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
-        t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
-        t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
-        t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
-        t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+        t.index [ "context" ], name: "index_taggings_on_context"
+        t.index [ "tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type" ],
+name: "taggings_idx", unique: true
+        t.index [ "tag_id" ], name: "index_taggings_on_tag_id"
+        t.index [ "taggable_id", "taggable_type", "context" ],
+name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+        t.index [ "taggable_id", "taggable_type", "tagger_id", "context" ], name: "taggings_idy"
+        t.index [ "taggable_id" ], name: "index_taggings_on_taggable_id"
+        t.index [ "taggable_type" ], name: "index_taggings_on_taggable_type"
+        t.index [ "tagger_id", "tagger_type" ], name: "index_taggings_on_tagger_id_and_tagger_type"
+        t.index [ "tagger_id" ], name: "index_taggings_on_tagger_id"
       end
     end
 
@@ -329,7 +332,7 @@ class AlchemyFourPointZero < ActiveRecord::Migration[5.0]
       create_table :tags do |t|
         t.string "name"
         t.integer "taggings_count", default: 0
-        t.index ["name"], name: "index_tags_on_name", unique: true
+        t.index [ "name" ], name: "index_tags_on_name", unique: true
       end
     end
 
